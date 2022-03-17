@@ -110,3 +110,5 @@ E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Client.dll
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Client.pdb
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Client.genruntimeconfig.cache
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\TestCors\Index.cshtml.g.cs
+E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\Latihan\Index.cshtml.g.cs
+E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutLatihan.cshtml.g.cs

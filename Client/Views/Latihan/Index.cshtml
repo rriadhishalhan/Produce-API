@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+    <body>
+        @*<h1>This is a Heading</h1>
+            <p>This is a paragraph.</p>*@
+        <button id="showData">LATIHAN YA GES YAK</button>
+        <div id="table-container"></div>
+
+    </body>
+</html>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).on('click', '#showData', function (e) {
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:44300/API/Employees/MasterEmployeeData",
+            success: function (data) {
+                $("#table-container").html(data);
+                console.log(data);
+            }
+        });
+    });
+
+</script>
