@@ -1,4 +1,10 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var element = document.getElementById("btnChangeBg");
+console.log(element);
 
-// Write your JavaScript code.
+element.addEventListener("click", changeBg,false)
+
+
+function changeBg() {
+    var x = document.getElementById("paraf2");
+    x.className = (x.className === "activate") ? "" : "activate";
+}

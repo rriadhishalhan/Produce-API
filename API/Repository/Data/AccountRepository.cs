@@ -29,9 +29,9 @@ namespace API.Repository.Data
 
             if (empCount != 0)
             {
-                var LastNIK = int.Parse(myContext.Employees.OrderByDescending(e => e.NIK)
-                    .Select(e => e.NIK).FirstOrDefault().ToString().Substring(4));
-                NikFormat = Year + "00" + (LastNIK+1).ToString();
+                var LastNIK = int.Parse(myContext.Employees.OrderBy(e => e.NIK)
+                    .Select(e => e.NIK).LastOrDefault().ToString());
+                NikFormat = (LastNIK+1).ToString();
             }
 
             var emailEmployee = myContext.Employees.Where(e => e.Email == registerVM.Email).FirstOrDefault();

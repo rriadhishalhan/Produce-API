@@ -1,0 +1,251 @@
+﻿
+@{
+    Layout = "_LayoutEmployee";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/datatables.min.css" />
+    @*<title>Index</title>*@
+</head>
+<body style="margin-top:10%">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <center>
+                    <h1 id="judul" class="text-black" style="margin-bottom:2%;">Master Employee</h1>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddDataModal" onclick="">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Add Data
+                    </button>
+                </center>
+
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped table-hover" id="employeeDatatable">
+        <thead class="thead-dark">
+            <tr style="text-align:center">
+                <th scope="col">No</th>
+                <th scope="col">NIK</th>
+                <th scope="col">Name</th>
+                <th scope="col">Role</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody id="listEmployee" class="tbody-light" style="text-align:center;background-color:white;">
+        </tbody>
+    </table>
+
+
+    @*=============MODALMODALMODALMODAL==============*@
+    <div id="AddDataModal" class="modal fade bd-example-modal-lg"  tabindex="-1" role="dialog" aria-labelledby="AddDataModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="container">
+                        <div class="row" style="border-color: #d0d2d6; border-style: solid; border-width: 0px 0px 2px 0px; ">
+                            <div class="col-4">
+                                
+                            </div>
+                            <div class="col-4">
+                                <center>
+                                    <h2 class="modal-title" style="font-weight:600">
+                                        Add Data
+                                    </h2>
+                                </center>                                
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="modal-body">
+
+                    <form role="form" method="POST" action="" >
+                        <input type="hidden" name="_token" value="">
+                        <div class="form-group">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="control-label">First Name</label>
+                                        <div>
+                                            <input id="FirstName" type="text" class="form-control input-group-sm" name="firstName" value="" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="control-label">Last Name</label>
+                                        <div>
+                                            <input id="LastName" type="text" class="form-control input-group-sm" name="lastName" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-6">
+                                        <label class="control-label">Phone Number</label>
+                                        <div>
+                                            <input id="PhoneNumber" type="text" class="form-control input-group-sm" name="phoneNumber" value="" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <label class="control-label">Gender</label><br />
+                                        <input type='radio'  id="male" name="genderRadio" value="0" checked='checked' >
+                                        <label for='male'>Male</label>
+                                        <input type='radio'  id="female" name="genderRadio" value="1">
+                                        <label for='female'>Female</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="container">
+                                <div class="row">
+                                    
+                                    <div class="col-6">
+                                        <label for="dateofbirth">Date Of Birth</label>
+                                        <div>
+                                            <input type="date" class="form-control input-group-sm" name="dateofbirth" id="DateOfBirth" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="control-label">Salary</label>
+                                        <div>
+                                            <input type="number" class="form-control input-group-sm" name="salary" id="Salary" value="">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="control-label">Email</label>
+                                        <div>
+                                            <input id="Email" type="email" class="form-control input-group-sm" name="email" value="" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="control-label">Password</label>
+                                        <div>
+                                            <input id="Password" type="password" class="form-control input-group-sm" name="password" value="" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="control-label">Universites</label>
+                                        <div>
+                                            <select class="form-control input-group-sm" id="inputUniversities">
+                                                
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="control-label">Degree</label>
+                                        <div>
+                                            <input id="Degree" type="text" class="form-control input-group-sm" name="degree" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <label class="control-label">GPA</label>
+                                        <div>
+                                            <input id="Gpa" type="number" class="form-control input-group-sm" step="0.01" name="gpa" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="control-label">Role</label>
+                                        <div>
+                                            <select class="form-control input-group-sm" id="inputRole">
+                                                
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        @* BTN SUBMIT *@
+                        <center>
+                            <div class="form-group">
+                                <div>
+                                    <input class="btn btn-default" type="reset" value="Reset" style="margin-right:5%">
+                                    <button type="submit" class="btn btn-primary" onclick="addEmployee()">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </center>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+<script>
+
+ 
+
+
+</script>

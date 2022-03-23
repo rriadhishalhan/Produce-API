@@ -81,7 +81,6 @@ E:\1SiKerja\MII\MCC\NET\codefile\API\Client\bin\Debug\netcoreapp3.1\ru\Microsoft
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Client.csproj.AssemblyReference.cache
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Client.GeneratedMSBuildEditorConfig.editorconfig
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Client.AssemblyInfoInputs.cache
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Client.AssemblyInfo.cs
@@ -112,3 +111,10 @@ E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Client.genru
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\TestCors\Index.cshtml.g.cs
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\Latihan\Index.cshtml.g.cs
 E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutLatihan.cshtml.g.cs
+E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Client.csproj.AssemblyReference.cache
+E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutStarwars.cshtml.g.cs
+E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\Starwars\Index.cshtml.g.cs
+E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\Pokemon\Index.cshtml.g.cs
+E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutPokemon.cshtml.g.cs
+E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Index.cshtml.g.cs
+E:\1SiKerja\MII\MCC\NET\codefile\API\Client\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutEmployee.cshtml.g.cs

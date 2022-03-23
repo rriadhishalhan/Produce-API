@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "_LayoutLatihan";
 }
 
 <!DOCTYPE html>
@@ -8,27 +8,52 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    @*<title>Index</title>*@
 </head>
-<body>
-    <h1>This is a Heading</h1>
-    <p>This is a paragraph.</p>
-    <button id="showData">LATIHAN YA GES YAK</button>
-    <div id="table-container"></div>
+<body style="margin-top:5%">
+    <h1 id="judul" class="text-black">MCC63-NET.</h1>
+
+    <div class="container">
+        <div class="row">
+            <div id="paraf1" class="col-6">
+                <p>
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                </p>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div id="paraf2" class="col-12">
+                        <p>
+                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                        </p>
+                    </div>
+                    <div id="paraf3" class="col-12">
+                        <p>
+                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:4px">
+            <div class="col-sm text-center">
+                <button id="btnChangeBg" type="button" class="btn btn-primary btn-block">Change Background Color</button>
+            </div>
+            <div class="col-sm"></div>
+            <div class="col-sm"></div>
+        </div>
+    </div>
+
 
 </body>
 </html>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
-    $(document).on('click', '#showData', function (e) {
-        $.ajax({
-            type: "GET",
-            url: "https://localhost:44300/API/Employees/MasterEmployeeData",
-            success: function (data) {
-                $("#table-container").html(data);
-                console.log(data);
-            }
-        });
-    });
+    
 
 </script>
