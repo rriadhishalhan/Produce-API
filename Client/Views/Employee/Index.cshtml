@@ -44,22 +44,22 @@
     </table>
 
 
-    @*=============MODALMODALMODALMODAL==============*@
-    <div id="AddDataModal" class="modal fade bd-example-modal-lg"  tabindex="-1" role="dialog" aria-labelledby="AddDataModal" aria-hidden="true">
+    @*=============MODALMODALMODALMODAL --- ADD EMPLOYEE==============*@
+    <div id="AddDataModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="AddDataModal" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="margin-bottom:2%;">
                     <div class="container">
                         <div class="row" style="border-color: #d0d2d6; border-style: solid; border-width: 0px 0px 2px 0px; ">
                             <div class="col-4">
-                                
+
                             </div>
                             <div class="col-4">
                                 <center>
                                     <h2 class="modal-title" style="font-weight:600">
                                         Add Data
                                     </h2>
-                                </center>                                
+                                </center>
                             </div>
                             <div class="col-4">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -68,12 +68,13 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
+
+
                 </div>
                 <div class="modal-body">
 
-                    <form role="form" method="POST" action="" >
+                    @*onsubmit="return false;"*@
+                    <form role="form" method="POST" action="" onsubmit="return false;">
                         <input type="hidden" name="_token" value="">
                         <div class="form-group">
 
@@ -109,9 +110,9 @@
 
                                     <div class="col-6">
                                         <label class="control-label">Gender</label><br />
-                                        <input type='radio'  id="male" name="genderRadio" value="0" checked='checked' >
+                                        <input type='radio' id="male" name="genderRadio" value="0" checked='checked'>
                                         <label for='male'>Male</label>
-                                        <input type='radio'  id="female" name="genderRadio" value="1">
+                                        <input type='radio' id="female" name="genderRadio" value="1">
                                         <label for='female'>Female</label>
                                     </div>
 
@@ -124,7 +125,7 @@
 
                             <div class="container">
                                 <div class="row">
-                                    
+
                                     <div class="col-6">
                                         <label for="dateofbirth">Date Of Birth</label>
                                         <div>
@@ -172,8 +173,6 @@
                                         <label class="control-label">Universites</label>
                                         <div>
                                             <select class="form-control input-group-sm" id="inputUniversities">
-                                                
-
                                             </select>
                                         </div>
                                     </div>
@@ -194,7 +193,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
 
                         <div class="form-group">
 
@@ -204,8 +203,6 @@
                                         <label class="control-label">Role</label>
                                         <div>
                                             <select class="form-control input-group-sm" id="inputRole">
-                                                
-
                                             </select>
                                         </div>
                                     </div>
@@ -233,7 +230,260 @@
         </div>
     </div>
 
+    @*=============MODALMODALMODALMODAL --- DETAIL EMPLOYEE==============*@
+    <div id="DetailDataModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="DetailDataModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content rounded-0" style="border-radius:5%!important">
+                <div class="modal-header" style="margin-bottom:2%;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-4">
 
+                            </div>
+                            <div class="col-4" id="HeaderModelDetail">
+                                <center>
+                                    <h2 class="modal-title" style="font-weight:600">
+                                        Detail Data
+                                    </h2>
+                                </center>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row" style="border-color: #d0d2d6; border-style: solid; border-width: 0px 0px 2px 0px; ">
+                            <div class="col-2" style=" line-height: 35px;">
+                                NIK :
+                            </div>
+                            <div id="employeeNIK" class="col-3" style=" line-height: 30px;">
+
+                            </div>
+
+                        </div>
+                        <div class="row" style="border-color: #d0d2d6; border-style: solid; border-width: 0px 0px 2px 0px; ">
+                            <div class="col-2" style=" line-height: 35px;">
+                                Nama :
+                            </div>
+                            <div id="employeeName" class="col-6" style=" line-height: 30px;">
+
+                            </div>
+                            <div class="col-2" style=" line-height: 35px;">
+                                Gender :
+                            </div>
+                            <div id="employeeGender" class="col-2" style=" line-height: 30px;">
+
+                            </div>
+                        </div>
+                        <div class="row" style="border-color: #d0d2d6; border-style: solid; border-width: 0px 0px 2px 0px; ">
+                            <div class="col-2" style=" line-height: 35px;">
+                                Role :
+                            </div>
+                            <div id="employeeRole" class="col-6" style=" line-height: 30px;">
+
+                            </div>
+                        </div>
+                        <div class="row" style="border-color: #d0d2d6; border-style: solid; border-width: 0px 0px 2px 0px; ">
+                            <div class="col-2" style=" line-height: 35px;">
+                                Email :
+                            </div>
+                            <div id="employeeEmail" class="col-6" style=" line-height: 30px;">
+
+                            </div>
+
+                        </div>
+                        <div class="row" style="border-color: #d0d2d6; border-style: solid; border-width: 0px 0px 2px 0px; ">
+                            <div class="col-2" style=" line-height: 35px;">
+                                Phone :
+                            </div>
+                            <div id="employeePhone" class="col-6">
+
+                            </div>
+                            <div class="col-2" style=" line-height: 35px;">
+                                Salary :
+                            </div>
+                            <div id="employeeSalary" class="col-2">
+
+                            </div>
+                        </div>
+                        <div class="row" style="border-color: #d0d2d6; border-style: solid; border-width: 0px 0px 2px 0px; ">
+                            <div class="col-2" style=" line-height: 35px;">
+                                Universities :
+                            </div>
+                            <div id="employeeUniversities" class="col-10" style=" line-height: 30px;">
+
+                            </div>
+
+                        </div>
+                        <div class="row" style="border-color: #d0d2d6; border-style: solid; border-width: 0px 0px 2px 0px;margin-bottom:8% ">
+                            <div class="col-2" style=" line-height: 35px;">
+                                Degree :
+                            </div>
+                            <div id="employeeDegree" class="col-6" style=" line-height: 30px;">
+
+                            </div>
+                            <div class="col-2" style=" line-height: 35px;">
+                                GPA :
+                            </div>
+                            <div id="employeeGpa" class="col-2" style=" line-height: 30px;">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*=============MODALMODALMODALMODAL --- UPDATE EMPLOYEE==============*@
+    <div id="UpdateDataModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="UpdateDataModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content rounded-0" style="border-radius:5%!important">
+                <div class="modal-header" style="margin-bottom:2%;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-4">
+
+                            </div>
+                            <div class="col-4" id="HeaderModelDetail">
+                                <center>
+                                    <h2 class="modal-title" style="font-weight:600">
+                                        Update Data
+                                    </h2>
+                                </center>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-body">
+                    @*onsubmit="return false;"*@
+                    <form role="form" method="POST" action="" onsubmit="return false;">
+                        <input type="hidden" name="_token" value="">
+                        <div class="form-group">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label class="control-label">NIK</label>
+                                        <div id="updateNik">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="control-label">First Name</label>
+                                        <div id="updateFirstName">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="control-label">Last Name</label>
+                                        <div id="updateLastName">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-6">
+                                        <label class="control-label">Phone Number</label>
+                                        <div id="updatePhoneNumber">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <label class="control-label">Gender</label><br />
+                                        <div id="updateGender">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-6">
+                                        <label for="dateofbirth">Date Of Birth</label>
+                                        <div id="updateDate">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="control-label">Salary</label>
+                                        <div id="updateSalary">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="control-label">Email</label>
+                                        <div id="updateEmail">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        @* BTN UPSATE *@
+                        <center>
+                            <div class="form-group">
+                                <div>
+                                    @*<input class="btn btn-default" type="reset" value="Reset" style="margin-right:5%">*@
+                                    <button type="submit" class="btn btn-primary" onclick="updateEmployee()">
+                                        Update
+                                    </button>
+                                </div>
+                            </div>
+                        </center>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

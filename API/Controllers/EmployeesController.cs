@@ -49,6 +49,28 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet("MasterEmployeeData/{NIK}")]
+        public ActionResult MasterEmployeeData(string NIK)
+        {
+            try
+            {
+                var dataMaster = employeeRepository.MasterEmployee(NIK);
+                if (dataMaster.Count != 0)
+                {
+                    return Ok(dataMaster);
+                }
+                else
+                {
+                    return NotFound("NIK TIDAK DITEMUKAN");
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "MASTER DATA Server Error");
+            }
+        }
+
         [HttpGet("TestCORS")]
         public ActionResult TestCORS()
         {
