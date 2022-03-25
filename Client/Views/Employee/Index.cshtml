@@ -11,37 +11,86 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/datatables.min.css" />
     @*<title>Index</title>*@
 </head>
-<body style="margin-top:10%">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <center>
-                    <h1 id="judul" class="text-black" style="margin-bottom:2%;">Master Employee</h1>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddDataModal" onclick="">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Add Data
-                    </button>
-                </center>
+<body class="hold-transition sidebar-mini layout-fixed" style="background-color: #f4f6f9;">
+    <div class="wrapper">
+        <div class="content-wrapper">
+            <section class="content">
+                <div class="container-fluid">
 
-            </div>
+                    <div class="row" style="margin-top:2%;margin-bottom:4%">
+                        <div class="col-12">
+                            <center>
+                                <h1 id="judul" class="text-black" style="margin-bottom:2%; font-weight:700">Master Employee</h1>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddDataModal" onclick="">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add Data
+                                </button>
+                            </center>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <table class="table table-striped table-hover" id="employeeDatatable">
+                                        <thead class="thead-dark">
+                                            <tr style="text-align:center">
+                                                <th scope="col">No</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Phone</th>
+                                                <th scope="col">Gender</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listEmployee" class="tbody-light" style="text-align:center;background-color:white;">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header">
+
+                                    <h3 class="card-title">
+                                        <i class="fas fa-chart-pie mr-1"></i>
+                                        Gender Percentage
+                                    </h3>
+
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="tab-content p-0">
+                                        <div id="chart"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
         </div>
     </div>
+    
 
-    <table class="table table-striped table-hover" id="employeeDatatable">
-        <thead class="thead-dark">
-            <tr style="text-align:center">
-                <th scope="col">No</th>
-                <th scope="col">NIK</th>
-                <th scope="col">Name</th>
-                <th scope="col">Role</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody id="listEmployee" class="tbody-light" style="text-align:center;background-color:white;">
-        </tbody>
-    </table>
+
+
+
+
 
 
     @*=============MODALMODALMODALMODAL --- ADD EMPLOYEE==============*@
@@ -50,7 +99,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="margin-bottom:2%;">
                     <div class="container">
-                        <div class="row" style="border-color: #d0d2d6; border-style: solid; border-width: 0px 0px 2px 0px; ">
+                        <div class="row">
                             <div class="col-4">
 
                             </div>
@@ -74,8 +123,7 @@
                 <div class="modal-body">
 
                     @*onsubmit="return false;"*@
-                    <form role="form" method="POST" action="" onsubmit="return false;">
-                        <input type="hidden" name="_token" value="">
+                    <form id="formInsertDataEmployee" role="form" method="POST" action="" onsubmit="return false;">
                         <div class="form-group">
 
                             <div class="container">
@@ -144,26 +192,36 @@
 
                         </div>
 
-                        <div class="form-group">
 
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-6">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6">
+
+                                    <div class="form-group">
+
                                         <label class="control-label">Email</label>
                                         <div>
-                                            <input id="Email" type="email" class="form-control input-group-sm" name="email" value="" required>
+                                            <input id="email" type="email" class="form-control input-group-sm" name="email" value="" required>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+
                                         <label class="control-label">Password</label>
                                         <div>
-                                            <input id="Password" type="password" class="form-control input-group-sm" name="password" value="" required>
+                                            <input id="password" type="password" class="form-control input-group-sm" name="password" value="" required>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
+
+
 
                         <div class="form-group">
 
@@ -489,13 +547,15 @@
 </html>
 
 
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 
+
 <script>
 
- 
+    
 
 
 </script>

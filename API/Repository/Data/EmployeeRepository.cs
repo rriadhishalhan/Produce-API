@@ -78,6 +78,13 @@ namespace API.Repository.Data
             return data.ToList();
         }
 
+        public ICollection CountGenderEmployee()
+        {
+            var dataCount = (from e in myContext.Employees
+                             group e by e.Gender into grp
+                             select new { gender = grp.Key.ToString(), count = grp.Count() });
 
+            return dataCount.ToList();
+        }
     }
 }

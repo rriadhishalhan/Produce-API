@@ -15,37 +15,78 @@ function addEmployee() {
     }
     obj.BirthDate = $("#DateOfBirth").val();
     obj.Salary = Number($("#Salary").val());
-    obj.Email = $("#Email").val();
-    obj.Password = $("#Password").val();
+    obj.Email = $("#email").val();
+    obj.Password = $("#password").val();
     obj.universityId = Number($("#inputUniversities").val());
     obj.Degree = $("#Degree").val();
     obj.GPA = $("#Gpa").val();
     obj.RoleId = Number($("#inputRole").val());
 
-    console.log("Sebelum masuk nih");
     console.log(obj);
 
-    $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type':'application/json'
+    $("#formInsertDataEmployee").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true,
+            },
+            password: {
+                required: true,
+            },
         },
-        type: "POST",
-        url: "https://localhost:44300/api/accounts/register",
-        dataType:"json",
-        data: JSON.stringify(obj)
-    }).done((result) => {
-        Swal.fire({
-            icon: 'success',
-            title: 'Data berhasil ditambahkan',
-        }).then((result) => {
-            window.location.reload();
+        messages: {
+            email: {
+                required: "Please enter a email address",
+                email: "Please enter a valid email address"
+            },
+            password: {
+                required: "Please provide a password",
+            }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+    if ($("#formInsertDataEmployee").valid()) {
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            url: "https://localhost:44300/api/accounts/register",
+            dataType: "json",
+            data: JSON.stringify(obj)
+        }).done((result) => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Data berhasil ditambahkan',
+            }).then((result) => {
+                window.location.reload();
+            })
+
+        }).fail((error) => {
+            console.log(error);
+
         })
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Gagal menambahkan, silahkan dicek kembali',
+            timer: 2000,
+        })
+    }
 
-    }).fail((error) => {
-        console.log(error);
-
-    })
+    
 }
 
 function detailEmployee(nik) {
@@ -124,9 +165,6 @@ function updateEmployee() {
     obj.Salary = Number($("#UpdateFormSalary").val());
     obj.Email = $("#UpdateFormEmail").val();
 
-    console.log("Sebelum masuk nih");
-    console.log(obj);
-
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -190,6 +228,7 @@ function deleteEmployee(nik) {
 }
 
 $(document).ready(function () {
+    //BUAT SELECT OPTION ROLE
     $.ajax({
         type: "GET",
         url: "https://localhost:44300/api/roles",
@@ -204,7 +243,7 @@ $(document).ready(function () {
     }).fail((err) => {
         console.log(err);
     });
-
+    //BUAT SELECT OPTION UNIVERSITAS
     $.ajax({
         type: "GET",
         url: "https://localhost:44300/api/universities",
@@ -220,8 +259,41 @@ $(document).ready(function () {
         console.log(err);
     });
 
+    //BUAT COUNT GENDER DAN CHART
+    $.ajax({
+        type: "GET",
+        url: "https://localhost:44300/api/employees/CountGender",
+        data: {}
+    }).done((result) => {
+        
+        console.log(result)
+        var options = {
+            series: [44, 55],
+            chart: {
+                type: 'donut',
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+    }).fail((err) => {
+        console.log(err);
+    });
 
 
+    //BUAT DATATABLE
     $("#employeeDatatable").DataTable({
         dom: 'Bfrtip',
         buttons: [

@@ -25,6 +25,27 @@ namespace API.Controllers
             this.employeeRepository = employeeRepository;
             this._configuration = configuration;
         }
+        [HttpGet("CountGender")]
+        public ActionResult CountGender()
+        {
+            try
+            {
+                var dataCount = employeeRepository.CountGenderEmployee();
+                if (dataCount.Count !=0)
+                {
+                    return Ok(dataCount);
+                }
+                else
+                {
+                    return NotFound("Tidak ada data");
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "COUNT DATA Server Error");
+            }
+        }
 
         //[Authorize(Roles = "Director")]
         [HttpGet("MasterEmployeeData")]
