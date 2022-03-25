@@ -266,9 +266,10 @@ $(document).ready(function () {
         data: {}
     }).done((result) => {
         
-        console.log(result)
         var options = {
-            series: [44, 55],
+            labels: [result[0].gender, result[1].gender],
+            series: [result[0].count, result[1].count],
+            colors: ['#2b5737','#691d57' ],
             chart: {
                 type: 'donut',
             },
@@ -295,6 +296,7 @@ $(document).ready(function () {
 
     //BUAT DATATABLE
     $("#employeeDatatable").DataTable({
+        responsive: true,
         dom: 'Bfrtip',
         buttons: [
             {
