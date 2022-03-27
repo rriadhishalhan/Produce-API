@@ -47,6 +47,28 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet("CountUniversities")]
+        public ActionResult CountUniversities()
+        {
+            try
+            {
+                var dataCount = employeeRepository.CountUniversitiesEmployees();
+                if (dataCount.Count != 0)
+                {
+                    return Ok(dataCount);
+                }
+                else
+                {
+                    return NotFound("Tidak ada data");
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "COUNT DATA Server Error");
+            }
+        }
+
         //[Authorize(Roles = "Director")]
         [HttpGet("MasterEmployeeData")]
         public ActionResult MasterEmployeeData()

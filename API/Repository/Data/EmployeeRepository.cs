@@ -86,5 +86,17 @@ namespace API.Repository.Data
 
             return dataCount.ToList();
         }
+
+        public ICollection CountUniversitiesEmployees()
+        {
+            var dataUniv = (from p in myContext.Profilings
+                            join e in myContext.Educations on p.Education_Id equals e.Id
+                            join u in myContext.Universities on e.University_Id equals u.Id
+                            group u by u.Name into grp
+                            select new { universities = grp.Key.ToString(), count = grp.Count() }); ;
+
+
+            return dataUniv.ToList();
+        }
     }
 }

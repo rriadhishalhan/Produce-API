@@ -286,7 +286,70 @@ $(document).ready(function () {
             }]
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        var chart = new ApexCharts(document.querySelector("#pieChartGender"), options);
+        chart.render();
+
+    }).fail((err) => {
+        console.log(err);
+    });
+
+    function getLabelsUniv(univs) {
+        var labels = [];
+
+        for (var i = 0; i < univs.length; i++) {
+            labels.push(univs[i].universities);
+        }
+
+        return labels;
+    }
+    function getSeriesUniv(univs) {
+        var series = [];
+        for (var i = 0; i < univs.length; i++) {
+            series.push(univs[i].count);
+
+        }
+
+        return series;
+    }
+
+    $.ajax({
+        type: "GET",
+        url: "https://localhost:44300/API/Employees/CountUniversities",
+        data: {}
+    }).done((result) => {
+
+        var options = {
+            xaxis: {
+                categories: getLabelsUniv(result),
+            },
+            series: [{
+                data: getSeriesUniv(result)
+            }],
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true,
+                }
+            },
+
+            //colors: ['#2b5737', '#691d57'],
+            chart: {
+                type: 'bar',
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chartUniversities"), options);
         chart.render();
 
     }).fail((err) => {
@@ -311,12 +374,12 @@ $(document).ready(function () {
             "dataSrc":"",
         },
         "columns": [
-            {
-                "data": null, "sortable": false,
-                render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }
-            },
+            //{
+            //    "data": null, "sortable": false,
+            //    render: function (data, type, row, meta) {
+            //        return meta.row + meta.settings._iDisplayStart + 1;
+            //    }
+            //},
             { "data": "nik" },
             { "data": "fullName" },
             { "data": "role" },
