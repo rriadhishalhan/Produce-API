@@ -82,7 +82,7 @@ namespace API.Repository.Data
         {
             var dataCount = (from e in myContext.Employees
                              group e by e.Gender into grp
-                             select new { gender = grp.Key.ToString(), count = grp.Count() });
+                             select new { Labels = grp.Key.ToString(), Series = grp.Count() });
 
             return dataCount.ToList();
         }
@@ -93,7 +93,8 @@ namespace API.Repository.Data
                             join e in myContext.Educations on p.Education_Id equals e.Id
                             join u in myContext.Universities on e.University_Id equals u.Id
                             group u by u.Name into grp
-                            select new { universities = grp.Key.ToString(), count = grp.Count() }); ;
+                            orderby grp.Count() descending
+                            select new { Labels = grp.Key.ToString(), Series = grp.Count() }); ;
 
 
             return dataUniv.ToList();

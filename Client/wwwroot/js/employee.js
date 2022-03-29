@@ -62,7 +62,7 @@ function addEmployee() {
                 'Content-Type': 'application/json'
             },
             type: "POST",
-            url: "https://localhost:44300/api/accounts/register",
+            url: "https://localhost:44368/employees/Register/",
             dataType: "json",
             data: JSON.stringify(obj)
         }).done((result) => {
@@ -114,7 +114,7 @@ function detailEmployee(nik) {
 function dataUpdate(nik) {
     $.ajax({
         type: "GET",
-        url: "https://localhost:44300/api/employees/" + nik,
+        url: "https://localhost:44368/employees/get/" + nik,
         data: {}
     }).done((result) => {
         console.log(result);
@@ -171,7 +171,7 @@ function updateEmployee() {
             'Content-Type': 'application/json'
         },
         type: "PUT",
-        url: "https://localhost:44300/api/Employees/",
+        url: "https://localhost:44368/employees/put/",
         dataType: "json",
         data: JSON.stringify(obj)
     }).done((result) => {
@@ -203,7 +203,7 @@ function deleteEmployee(nik) {
         if (result.isConfirmed) {
             $.ajax({
                 type: "DELETE",
-                url: "https://localhost:44300/api/employees/" + nik,
+                url: "https://localhost:44368/employees/delete/" + nik,
                 data: {}
             }).done((result) => {
                 Swal.fire(
@@ -231,7 +231,7 @@ $(document).ready(function () {
     //BUAT SELECT OPTION ROLE
     $.ajax({
         type: "GET",
-        url: "https://localhost:44300/api/roles",
+        url: "https://localhost:44368/roles/getall",
         data: {}
     }).done((result) => {
         var textRoles = `<option value="hide" style="display: none;">Pick role</option>`;
@@ -246,7 +246,7 @@ $(document).ready(function () {
     //BUAT SELECT OPTION UNIVERSITAS
     $.ajax({
         type: "GET",
-        url: "https://localhost:44300/api/universities",
+        url: "https://localhost:44368/universities/getall",
         data: {}
     }).done((result) => {
         var textUniversities = `<option value="hide" style="display: none;">Pick universities</option>`;
@@ -259,31 +259,22 @@ $(document).ready(function () {
         console.log(err);
     });
 
-    //BUAT COUNT GENDER DAN CHART
+    //BUAT COUNT GENDER
     $.ajax({
         type: "GET",
-        url: "https://localhost:44300/api/employees/CountGender",
+        url: "https://localhost:44368/employees/GetCountGender",
         data: {}
     }).done((result) => {
         
         var options = {
-            labels: [result[0].gender, result[1].gender],
-            series: [result[0].count, result[1].count],
+            labels: [result[0].labels, result[1].labels],
+            series: [result[0].series, result[1].series],
             colors: ['#2b5737','#691d57' ],
             chart: {
+                height: 350,
                 type: 'donut',
-            },
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }]
+                width: '100%'
+            }
         };
 
         var chart = new ApexCharts(document.querySelector("#pieChartGender"), options);
@@ -297,7 +288,7 @@ $(document).ready(function () {
         var labels = [];
 
         for (var i = 0; i < univs.length; i++) {
-            labels.push(univs[i].universities);
+            labels.push(univs[i].labels);
         }
 
         return labels;
@@ -305,24 +296,28 @@ $(document).ready(function () {
     function getSeriesUniv(univs) {
         var series = [];
         for (var i = 0; i < univs.length; i++) {
-            series.push(univs[i].count);
+            series.push(univs[i].series);
 
         }
-
         return series;
     }
 
+    //BUAT COUNT UNIVERSITIES
     $.ajax({
         type: "GET",
-        url: "https://localhost:44300/API/Employees/CountUniversities",
+        url: "https://localhost:44368/employees/GetCountUniversities",
         data: {}
     }).done((result) => {
 
         var options = {
             xaxis: {
                 categories: getLabelsUniv(result),
+                tickAmount: 1
             },
             series: [{
+                name: [
+                    "People count"
+                ],
                 data: getSeriesUniv(result)
             }],
             plotOptions: {
@@ -334,19 +329,11 @@ $(document).ready(function () {
 
             //colors: ['#2b5737', '#691d57'],
             chart: {
+                height: 350,
                 type: 'bar',
+                width: '100%'
             },
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }]
+            
         };
 
         var chart = new ApexCharts(document.querySelector("#chartUniversities"), options);
@@ -370,7 +357,7 @@ $(document).ready(function () {
             }
         ],
         "ajax": {
-            "url": "https://localhost:44300/API/Employees/MasterEmployeeData",
+            "url": "https://localhost:44368/employees/GetAllProfile",
             "dataSrc":"",
         },
         "columns": [
@@ -381,7 +368,7 @@ $(document).ready(function () {
             //    }
             //},
             { "data": "nik" },
-            { "data": "fullName" },
+            { "data": "fullname" },
             { "data": "role" },
             { "data": "email" },
             { "data": "phone" },

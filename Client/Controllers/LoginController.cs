@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Client.Controllers
 {
-    public class Employee : Controller
+    public class LoginController : Controller
     {
         public IActionResult Index()
         {
