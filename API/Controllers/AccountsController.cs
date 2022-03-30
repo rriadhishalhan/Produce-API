@@ -79,7 +79,7 @@ namespace API.Controllers
         }
 
 
-        [HttpGet("login")]
+        [HttpPost("login")]
         public ActionResult Login(LoginVM loginVM)
         {
             try
@@ -113,23 +113,6 @@ namespace API.Controllers
                 return Ok(new { status = HttpStatusCode.OK, idtoken, message = "Login Succes!!" });
 
 
-                //var dataLogin = accountRepository.Login(loginVM);
-                //if (dataLogin == 1)
-                //{
-                //    return Ok($"Selamat datang {loginVM.Email}");
-                //}
-                //else if (dataLogin == 2)
-                //{
-                //    return BadRequest("Password Salah");
-                //}
-                //else if (dataLogin == 3)
-                //{
-                //    return BadRequest("Email tidak ditemukan");
-                //}
-                //else
-                //{
-                //    return BadRequest("Email dan Password tidak ditemukan");
-                //}
             }
             catch (Exception)
             {

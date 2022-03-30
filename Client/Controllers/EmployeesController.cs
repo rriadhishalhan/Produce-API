@@ -2,6 +2,7 @@
 using API.ViewModel;
 using Client.Base;
 using Client.Repositories.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace Client.Controllers
 {
+
+    [Authorize(Roles = "Director")]
     public class EmployeesController : BaseController<Employee, EmployeeRepository, string>
     {
         private readonly EmployeeRepository repository;
