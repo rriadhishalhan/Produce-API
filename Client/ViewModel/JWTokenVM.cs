@@ -8,7 +8,7 @@ namespace Client.ViewModel
     public class JWTokenVM
     {
         public string status { get; set; }
-        public string Messages { get; set; }
+        public string message { get; set; }
         public string idtoken { get; set; }
     }
 }

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Client.Controllers
 {
 
-    [Authorize(Roles = "Director")]
+    [Authorize]
     public class EmployeesController : BaseController<Employee, EmployeeRepository, string>
     {
         private readonly EmployeeRepository repository;
@@ -51,10 +51,6 @@ namespace Client.Controllers
         }
 
 
-
-
-
-
         [HttpPost]
         public JsonResult Register([FromBody] RegisterVM entity)
         {
@@ -62,9 +58,12 @@ namespace Client.Controllers
             return Json(result);
         }
 
+        [Authorize(Roles = "Director")]
         public IActionResult Index()
         {
             return View();
         }
+
+
     }
 }

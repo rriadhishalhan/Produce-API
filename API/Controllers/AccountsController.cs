@@ -83,34 +83,46 @@ namespace API.Controllers
         public ActionResult Login(LoginVM loginVM)
         {
             try
-            {          
+            {
+                var dataLogin = accountRepository.Login(loginVM);
+                if (dataLogin == 1)
+                {
+                    var User = accountRepository.GetAccountRole(loginVM.Email);
 
-                var User = accountRepository.GetAccountRole(loginVM.Email);
-
-                //PAYLOAD
-                var claims = new List<Claim>
+                    //PAYLOAD
+                    var claims = new List<Claim>
                 {
                     new Claim("Email",User.Email)
                 };
 
-                foreach (string r in User.Roles)
-                {
-                    claims.Add(new Claim("roles", r));
+                    foreach (string r in User.Roles)
+                    {
+                        claims.Add(new Claim("roles", r));
+                    }
+
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+                    var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                    var token = new JwtSecurityToken(
+                        _configuration["Jwt:Issuer"],
+                        _configuration["Jwt:Audience"],
+                        claims,
+                        expires: DateTime.UtcNow.AddMinutes(10),
+                        signingCredentials: signIn
+                        );
+                    var idtoken = new JwtSecurityTokenHandler().WriteToken(token);
+                    claims.Add(new Claim("TokenSecurity", idtoken.ToString()));
+
+                    return Ok(new { status = HttpStatusCode.OK, idtoken, message = "Login Succes!!" });
                 }
-
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-                var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                var token = new JwtSecurityToken(
-                    _configuration["Jwt:Issuer"],
-                    _configuration["Jwt:Audience"],
-                    claims,
-                    expires: DateTime.UtcNow.AddMinutes(10),
-                    signingCredentials: signIn
-                    );
-                var idtoken = new JwtSecurityTokenHandler().WriteToken(token);
-                claims.Add(new Claim("TokenSecurity", idtoken.ToString()));
-
-                return Ok(new { status = HttpStatusCode.OK, idtoken, message = "Login Succes!!" });
+                else if (dataLogin == 2 )
+                {
+                    return NotFound(new { status = HttpStatusCode.NotFound,idtoken = (object)null,message = "Password Salah" });
+                }
+                else
+                {
+                    return NotFound(new { status = HttpStatusCode.NotFound, idtoken = (object)null, message = "Akun tidak ditemukan" });
+                }
+                
 
 
             }
