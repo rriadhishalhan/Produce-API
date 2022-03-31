@@ -263,13 +263,28 @@
             </svg>
         </div>
         <div class="col-md-6 align-self-center">
-            <h1>404</h1>
+            <h1 style="font-size:70pt">404</h1>
             <h2>UH OH! You're lost.</h2>
             <p>
                 The page you are looking for does not exist.
-                How you got here is a mystery.
+                How you got here is a mystery. <b>Don't worry we will bring you back on track in....</b>
             </p>
+            <center>
+                <h1 id="countdown"></h1>
+            </center>
             @*<button class="btn green">HOME</button>*@
         </div>
     </div>
 </div>
+
+<script>
+    let timer = 10;
+    setInterval(function () {
+        document.getElementById("countdown").innerHTML = timer;
+        timer--;
+
+        if (timer == 0) {
+            location.href = "/login"
+        }
+    },1000)
+</script>
